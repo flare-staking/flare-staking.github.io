@@ -1,1 +1,22 @@
-{"name": "Flarestake — Flare Staking", "short_name": "Flarestake", "start_url": "/", "display": "standalone", "background_color": "#150B11", "theme_color": "#150B11", "icons": [{"src": "assets/web-app-manifest-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"}, {"src": "assets/web-app-manifest-512x512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}]}
+{
+  "name": "Flare Staking",
+  "short_name": "Flare Staking",
+  "description": "Flare Staking lets you stake FLR and receive a liquid staking token from your own wallet.",
+  "start_url": "https://flare-staking.github.io/",
+  "scope": "https://flare-staking.github.io/",
+  "display": "standalone",
+  "background_color": "#F7F5F3",
+  "theme_color": "#E62058",
+  "icons": [
+    {
+      "src": "favicon.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
